@@ -34,8 +34,8 @@ plugins:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
+  localTrucks:
+    handler: handler.localTrucks
     events:
       - http: true
         x-azure-settings:

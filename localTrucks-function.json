@@ -13,6 +13,6 @@
             "name": "res"
         }
     ],
-    "entryPoint": "hello",
+    "entryPoint": "localTrucks",
     "scriptFile": "handler.js"
 }
