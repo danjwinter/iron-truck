@@ -1,52 +1,27 @@
 version: 2
 jobs:
-  checkout_code:
+  test:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:11.1.0
     working_directory: ~/iron-truck
     steps:
       - checkout
-      - run:
-          name: save SHA to a file
-          command: echo $CIRCLE_SHA1 > .circle-sha
-      - save_cache:
-          key: repo-{{ checksum ".circle-sha" }}
-          paths:
-            - ~/iron-truck
-  test:
-    docker:
-      - image: circleci/node:latest
-    working_directory: ~/iron-truck
-    steps:
-      - run:
-          name: save SHA to a file
-          command: echo $CIRCLE_SHA1 > .circle-sha
-      - restore_cache:
-          key: repo-{{ checksum ".circle-sha" }}
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: install-npm
-          command: |
-            rm package-lock.json
-            npm install mocha
-            npm install chai
-            npm install --production
+          name: install-dependencies
+          command: npm install
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ~/iron-truck/node_modules
       - run:
           name: test
-          command: |
-            npm test
+          command: npm test
 
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - checkout_code
-      - test:
-          requires:
-            - checkout_code
+      - test

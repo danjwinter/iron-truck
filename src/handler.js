@@ -16,7 +16,7 @@ module.exports.localTrucks = async function (context, req) {
 }
 
 function missingParams(req) {
-  return (!req.query || !req.query.latitude || !req.query.longitude)
+  return !(req.query && req.query.latitude && req.query.longitude)
 }
 
 function badQueryResponse(latitude, longitude) {
