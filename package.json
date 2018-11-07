@@ -9,5 +9,8 @@
   ],
   "devDependencies": {
     "serverless-azure-functions": "*"
+  },
+  "dependencies": {
+    "soda-js": "^0.2.3"
   }
 }
