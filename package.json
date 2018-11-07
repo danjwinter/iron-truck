@@ -2,12 +2,17 @@
   "name": "iron-truck",
   "version": "1.0.0",
   "description": "Azure Functions sample for the Serverless framework",
-  "main": "handler.js",
+  "main": "src/handler.js",
+  "scripts": {
+    "test": "mocha test"
+  },
   "keywords": [
     "azure",
     "serverless"
   ],
   "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
     "serverless-azure-functions": "*"
   },
   "dependencies": {

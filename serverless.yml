@@ -35,7 +35,7 @@ plugins:
 
 functions:
   localTrucks:
-    handler: handler.localTrucks
+    handler: src/handler.localTrucks
     events:
       - http: true
         x-azure-settings:

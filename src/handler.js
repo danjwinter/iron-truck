@@ -20,7 +20,6 @@ module.exports.localTrucks = async function (context, req) {
   } else {
     context.res = missingParams
   }
-  context.done()
 };
 
 function badQuery(latitude, longitude) {

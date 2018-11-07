@@ -14,5 +14,5 @@
         }
     ],
     "entryPoint": "localTrucks",
-    "scriptFile": "handler.js"
+    "scriptFile": "src/handler.js"
 }
