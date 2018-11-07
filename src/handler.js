@@ -16,7 +16,7 @@ module.exports.localTrucks = async function (context, req) {
 }
 
 function missingParams(req) {
-  return (!req.query || !req.query.latitude || !req.query.longitude)
+  return !(req.query && req.query.latitude && req.query.longitude)
 }
 
 function badQueryResponse(latitude, longitude) {
@@ -43,7 +43,14 @@ function getTrucks(latitude, longitude) {
       .where({ status: 'APPROVED' })
       .order(`distance_in_meters(location, 'POINT (${longitude} ${latitude})')`)
       .getRows()
-      .on('success', function (rows) { resolve(rows); })
-      .on('error', function (error) { reject(error); });
+      .on('success', function (rows) { resolve(formatSodaResponse(rows)) })
+      .on('error', function (error) { reject(error); })
+  })
+}
+
+function formatSodaResponse(rows) {
+  return rows.map((row) => {
+    row.distance_in_feet = parseInt(row.distance_in_feet)
+    return row
   })
 }

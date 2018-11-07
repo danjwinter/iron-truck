@@ -10,9 +10,11 @@ describe('localTrucks', async () => {
         longitude: -122.39406659923
       }
     }
-    const context = {}
+    const context = {
+      log: function() {}
+    }
     await handler.localTrucks(context, request)
-    assert.deepEqual(context, helper.happyPathExpectedContext)
+    assert.deepEqual(context.res, helper.happyPathExpectedResponse)
   })
 
   it('returns a 400 if bad latitude and longitude are given', async () => {
