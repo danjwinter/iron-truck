@@ -41,23 +41,6 @@ jobs:
           command: |
             npm test
 
-  # deploy:
-  #   docker:
-  #     - image: circleci/node:latest
-  #   working_directory: ~/jobs
-  #   steps:
-  #     - restore_cache:
-  #         key: repo-{{ checksum ".circle-sha" }}
-  #     - restore_cache:
-  #         key: dependency-cache-{{ checksum "package.json" }}
-  #     - deploy:
-  #         name: Deploy
-  #         command: |
-  #           if [ "${CIRCLE_BRANCH:-}" = "master" ]; then
-  #             npm install -g serverless
-  #             npm install -g serverless-azure-functions
-  #             serverless deploy function -f localTrucks
-  #           fi
 
 workflows:
   version: 2
@@ -67,6 +50,3 @@ workflows:
       - test:
           requires:
             - checkout_code
-      # - deploy:
-      #     requires:
-      #       - test
